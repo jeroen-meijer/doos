@@ -1,6 +1,7 @@
 name: doos
 version: 0.0.1
 description: A type-safe local storage library for Dart and Flutter apps with reactive change streams.
+repository: https://github.com/jeroen-meijer/doos
 
 environment:
   sdk: '>=3.10.0 <4.0.0'
