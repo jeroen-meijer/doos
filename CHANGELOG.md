@@ -1,6 +1,6 @@
 ## Upcoming
 
-- chore: import tests and json_storage_adapter from package:doos/doos.dart barrel
+- chore: import tests and the JSON adapter through the package:doos/doos.dart barrel
 
 ## 0.0.1
 
