@@ -1,3 +1,7 @@
+## Upcoming
+
+- chore: import tests and json_storage_adapter from package:doos/doos.dart barrel
+
 ## 0.0.1
 
 - Initial release of Doos:
