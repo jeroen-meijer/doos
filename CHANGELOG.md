@@ -1,5 +1,7 @@
 ## Upcoming
 
+- docs: require every PR to update Upcoming; prefer end-user wording when the change is visible, and write what the UI does instead of soft wrappers
+
 - chore: import tests and the JSON adapter through the package:doos/doos.dart barrel
 
 ## 0.0.1
