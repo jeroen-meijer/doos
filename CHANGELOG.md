@@ -1,5 +1,7 @@
 ## Upcoming
 
+- chore: keep the `@Redundant` hints on `DoosOk` and `DoosErr` without analyzer warnings on breaking versions
+
 ## 0.1.0
 
 - docs: require every PR to update Upcoming; prefer end-user wording when the change is visible; write what the UI does instead of soft wrappers; keep changelog bullets consecutive (no blank lines between them)
