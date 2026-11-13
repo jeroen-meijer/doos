@@ -7,7 +7,7 @@ import 'package:equatable/equatable.dart';
 /// - [DoosOk] if the operation was successful
 /// - [DoosErr] if the operation failed
 /// {@endtemplate}
-sealed class DoosResult<T, E> with EquatableMixin {
+sealed class DoosResult<T, E> with Equatable {
   /// {@macro doos_result}
   const DoosResult();
 

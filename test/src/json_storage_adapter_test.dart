@@ -24,35 +24,28 @@ void main() {
       test(
         'creates adapter with new file when createFileIfNotExists is true',
         () async {
-          final adapter = await DoosJsonStorageAdapter.create(
-            file: testFile,
-          );
+          final adapter = await DoosJsonStorageAdapter.create(file: testFile);
 
           expect(adapter, isA<DoosJsonStorageAdapter>());
           expect(testFile.existsSync(), isTrue);
         },
       );
 
-      test(
-        'throws FileNotFoundException when file does not exist '
-        'and createFileIfNotExists is false',
-        () async {
-          expect(
-            () => DoosJsonStorageAdapter.create(
-              file: testFile,
-              createFileIfNotExists: false,
-            ),
-            throwsA(isA<FileNotFoundException>()),
-          );
-        },
-      );
+      test('throws FileNotFoundException when file does not exist '
+          'and createFileIfNotExists is false', () async {
+        expect(
+          () => DoosJsonStorageAdapter.create(
+            file: testFile,
+            createFileIfNotExists: false,
+          ),
+          throwsA(isA<FileNotFoundException>()),
+        );
+      });
 
       test('loads existing file data', () async {
         testFile.writeAsStringSync('{"key1": "value1", "key2": "value2"}');
 
-        final adapter = await DoosJsonStorageAdapter.create(
-          file: testFile,
-        );
+        final adapter = await DoosJsonStorageAdapter.create(file: testFile);
 
         final value1 = await adapter.read(key: 'key1');
         final value2 = await adapter.read(key: 'key2');
@@ -75,59 +68,44 @@ void main() {
         },
       );
 
-      test(
-        'throws JsonDecodeError when clearFileOnReadError is false '
-        'and JSON is invalid',
-        () async {
-          testFile.writeAsStringSync('invalid json');
+      test('throws JsonDecodeError when clearFileOnReadError is false '
+          'and JSON is invalid', () async {
+        testFile.writeAsStringSync('invalid json');
 
-          expect(
-            () => DoosJsonStorageAdapter.create(
-              file: testFile,
-            ),
-            throwsA(isA<JsonDecodeError>()),
-          );
-        },
-      );
+        expect(
+          () => DoosJsonStorageAdapter.create(file: testFile),
+          throwsA(isA<JsonDecodeError>()),
+        );
+      });
 
-      test(
-        'clears file when clearFileOnReadError is true '
-        'and data is not Map<String, String>',
-        () async {
-          testFile.writeAsStringSync('["array", "data"]');
+      test('clears file when clearFileOnReadError is true '
+          'and data is not Map<String, String>', () async {
+        testFile.writeAsStringSync('["array", "data"]');
 
-          await DoosJsonStorageAdapter.create(
-            file: testFile,
-            clearFileOnReadError: true,
-          );
+        await DoosJsonStorageAdapter.create(
+          file: testFile,
+          clearFileOnReadError: true,
+        );
 
-          expect(testFile.readAsStringSync(), equals('{}'));
-        },
-      );
+        expect(testFile.readAsStringSync(), equals('{}'));
+      });
 
-      test(
-        'throws JsonDecodeError when clearFileOnReadError is false '
-        'and data is not Map<String, String>',
-        () async {
-          testFile.writeAsStringSync('["array", "data"]');
+      test('throws JsonDecodeError when clearFileOnReadError is false '
+          'and data is not Map<String, String>', () async {
+        testFile.writeAsStringSync('["array", "data"]');
 
-          expect(
-            () => DoosJsonStorageAdapter.create(
-              file: testFile,
-            ),
-            throwsA(isA<JsonDecodeError>()),
-          );
-        },
-      );
+        expect(
+          () => DoosJsonStorageAdapter.create(file: testFile),
+          throwsA(isA<JsonDecodeError>()),
+        );
+      });
     });
 
     group('write', () {
       late DoosJsonStorageAdapter adapter;
 
       setUp(() async {
-        adapter = await DoosJsonStorageAdapter.create(
-          file: testFile,
-        );
+        adapter = await DoosJsonStorageAdapter.create(file: testFile);
       });
 
       test('writes value to file', () async {
@@ -166,9 +144,7 @@ void main() {
       late DoosJsonStorageAdapter adapter;
 
       setUp(() async {
-        adapter = await DoosJsonStorageAdapter.create(
-          file: testFile,
-        );
+        adapter = await DoosJsonStorageAdapter.create(file: testFile);
       });
 
       test('returns null for non-existent key', () async {
@@ -196,9 +172,7 @@ void main() {
       late DoosJsonStorageAdapter adapter;
 
       setUp(() async {
-        adapter = await DoosJsonStorageAdapter.create(
-          file: testFile,
-        );
+        adapter = await DoosJsonStorageAdapter.create(file: testFile);
       });
 
       test('removes existing key', () async {
@@ -230,9 +204,7 @@ void main() {
       late DoosJsonStorageAdapter adapter;
 
       setUp(() async {
-        adapter = await DoosJsonStorageAdapter.create(
-          file: testFile,
-        );
+        adapter = await DoosJsonStorageAdapter.create(file: testFile);
       });
 
       test('removes all keys', () async {
@@ -269,9 +241,7 @@ void main() {
       late DoosJsonStorageAdapter adapter;
 
       setUp(() async {
-        adapter = await DoosJsonStorageAdapter.create(
-          file: testFile,
-        );
+        adapter = await DoosJsonStorageAdapter.create(file: testFile);
       });
 
       test('complete workflow', () async {

@@ -245,11 +245,7 @@ void main() {
 
         expect(
           result,
-          isA<DoosOk<int, String>>().having(
-            (e) => e.value,
-            'value',
-            equals(0),
-          ),
+          isA<DoosOk<int, String>>().having((e) => e.value, 'value', equals(0)),
         );
       });
     });

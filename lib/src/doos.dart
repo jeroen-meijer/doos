@@ -134,11 +134,7 @@ class Doos with Disposable {
       return DoosOk(json.decode(value));
     } on FormatException catch (e) {
       return DoosErr(
-        DoosStorageDeserializationError(
-          key: key,
-          type: 'JSON',
-          error: e,
-        ),
+        DoosStorageDeserializationError(key: key, type: 'JSON', error: e),
       );
     }
   }
@@ -390,7 +386,7 @@ typedef OnChangeHandler =
 /// There is no distinction between a key not found and a key with a `null`
 /// value.
 /// {@endtemplate}
-class DoosStorageEntry<T> with EquatableMixin, Disposable {
+class DoosStorageEntry<T> with Equatable, Disposable {
   /// {@macro storage_entry}
   ///
   /// This constructor is only exposed for testing purposes. Do not use it in
@@ -485,7 +481,7 @@ class DoosStorageEntry<T> with EquatableMixin, Disposable {
   /// `null` or the key does not exist.
   ///
   /// If you are sure the value is not `null`, use [read] instead.
-  Future<DoosResult<T?, DoosStorageReadError>> readOrNull() async {
+  Future<DoosResult<T?, DoosStorageReadError>> readOrNull() {
     return _getValue().andThen((val) {
       if (val == null) {
         return const DoosOk(null);
@@ -530,7 +526,7 @@ class DoosStorageEntry<T> with EquatableMixin, Disposable {
           return writeResult.map((_) => true);
         }
         return const DoosOk(false);
-      case DoosErr(error: final error):
+      case DoosErr(:final error):
         return switch (error) {
           DoosStorageReadUnknownError(:final message) => DoosErr(
             DoosStorageWriteUnknownError(message),
@@ -555,7 +551,7 @@ class DoosStorageEntry<T> with EquatableMixin, Disposable {
         final writeResult = await _setValue(null);
         return switch (writeResult) {
           DoosOk() => DoosOk(existingValue != null),
-          DoosErr(error: final error) => switch (error) {
+          DoosErr(:final error) => switch (error) {
             DoosStorageWriteUnknownError(:final message) => DoosErr(
               DoosStorageRemoveUnknownError(message),
             ),
@@ -566,7 +562,7 @@ class DoosStorageEntry<T> with EquatableMixin, Disposable {
             ),
           },
         };
-      case DoosErr(error: final error):
+      case DoosErr(:final error):
         return switch (error) {
           DoosStorageReadUnknownError(:final message) => DoosErr(
             DoosStorageRemoveUnknownError(message),
@@ -585,7 +581,7 @@ class DoosStorageEntry<T> with EquatableMixin, Disposable {
 }
 
 /// Internal state for songing storage entries.
-class _StorageEntryState with EquatableMixin {
+class _StorageEntryState with Equatable {
   const _StorageEntryState({
     required this.listeners,
     required this.subject,
