@@ -1,4 +1,4 @@
-import 'package:doos/src/storage_error.dart';
+import 'package:doos/doos.dart';
 import 'package:test/test.dart';
 
 void main() {

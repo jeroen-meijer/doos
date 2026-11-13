@@ -1,4 +1,4 @@
-import 'package:doos/src/storage_adapter.dart';
+import 'package:doos/doos.dart';
 import 'package:test/test.dart';
 
 // Test implementation of DoosStorageAdapter
