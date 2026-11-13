@@ -1,5 +1,8 @@
 ## Upcoming
 
+## 0.1.1
+
+- fix(deps): apps on equatable 2.1 (for example through nocterm) can use doos 0.1 again; doos accepts equatable 2.1 and 3
 - chore: keep the `@Redundant` hints on `DoosOk` and `DoosErr` without analyzer warnings on breaking versions
 
 ## 0.1.0
