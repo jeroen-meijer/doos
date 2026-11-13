@@ -1,5 +1,7 @@
 ## Upcoming
 
+## 0.1.0
+
 - docs: require every PR to update Upcoming; prefer end-user wording when the change is visible; write what the UI does instead of soft wrappers; keep changelog bullets consecutive (no blank lines between them)
 - chore: import tests and the JSON adapter through the package:doos/doos.dart barrel
 - chore(deps): depend on equatable 3, so apps that use equatable 3 (or packages that need it, like dcli 10.4) can add doos
