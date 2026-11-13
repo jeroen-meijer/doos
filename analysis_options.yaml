@@ -11,3 +11,6 @@ linter:
   rules:
     document_ignores: false
     public_member_api_docs: true
+    # `@Redundant` (a `Deprecated` alias) marks members that stay in every
+    # version, so they are never removed in a breaking release.
+    remove_deprecations_in_breaking_versions: false
