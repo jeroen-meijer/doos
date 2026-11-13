@@ -280,23 +280,20 @@ void main() {
         ).called(1);
       });
 
-      test(
-        'deletes key when value is null even with non-nullable T',
-        () async {
-          final subject = buildSubject();
-          final result = await subject.write<String>('test_key', null);
+      test('deletes key when value is null even with non-nullable T', () async {
+        final subject = buildSubject();
+        final result = await subject.write<String>('test_key', null);
 
-          expect(
-            result,
-            isA<DoosOk<void, DoosStorageWriteError>>().having(
-              (e) => e.value,
-              'value',
-              isNull,
-            ),
-          );
-          verify(() => adapter.delete(key: 'test_key')).called(1);
-        },
-      );
+        expect(
+          result,
+          isA<DoosOk<void, DoosStorageWriteError>>().having(
+            (e) => e.value,
+            'value',
+            isNull,
+          ),
+        );
+        verify(() => adapter.delete(key: 'test_key')).called(1);
+      });
 
       test(
         'returns serialization error when value cannot be serialized',
@@ -387,20 +384,17 @@ void main() {
     });
 
     group('onChange', () {
-      test(
-        'emits current value on first subscription '
-        'when fetchInitialValue is true',
-        () async {
-          when(
-            () => adapter.read(key: 'test_key'),
-          ).thenAnswer((_) async => '"initial"');
+      test('emits current value on first subscription '
+          'when fetchInitialValue is true', () async {
+        when(
+          () => adapter.read(key: 'test_key'),
+        ).thenAnswer((_) async => '"initial"');
 
-          final subject = buildSubject();
-          final entry = subject.getEntry<String>('test_key');
+        final subject = buildSubject();
+        final entry = subject.getEntry<String>('test_key');
 
-          await expectLater(entry.onChange().take(1), emits('initial'));
-        },
-      );
+        await expectLater(entry.onChange().take(1), emits('initial'));
+      });
 
       test(
         'does not emit initial value when fetchInitialValue is false',

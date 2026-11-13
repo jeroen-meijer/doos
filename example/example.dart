@@ -22,7 +22,7 @@ Future<void> main() async {
   switch (writeResult) {
     case DoosOk():
       print('✓ Username written successfully');
-    case DoosErr(error: final error):
+    case DoosErr(:final error):
       print('✗ Error writing username: $error');
   }
 
@@ -31,7 +31,7 @@ Future<void> main() async {
   switch (readResult) {
     case DoosOk(value: final username):
       print('✓ Username: $username');
-    case DoosErr(error: final error):
+    case DoosErr(:final error):
       print('✗ Error reading username: $error');
   }
 
@@ -70,7 +70,7 @@ Future<void> main() async {
   switch (settingsResult) {
     case DoosOk(value: final settings):
       print('✓ Settings: $settings');
-    case DoosErr(error: final error):
+    case DoosErr(:final error):
       print('✗ Error reading settings: $error');
   }
 
@@ -83,7 +83,7 @@ Future<void> main() async {
   switch (writeIfAbsentResult) {
     case DoosOk(value: final written):
       print('✓ Token written: $written');
-    case DoosErr(error: final error):
+    case DoosErr(:final error):
       print('✗ Error: $error');
   }
 
@@ -92,7 +92,7 @@ Future<void> main() async {
   switch (writeIfAbsentResult2) {
     case DoosOk(value: final written):
       print('✓ Token written: $written');
-    case DoosErr(error: final error):
+    case DoosErr(:final error):
       print('✗ Error: $error');
   }
 
@@ -102,9 +102,9 @@ Future<void> main() async {
 
   final missingResult = await missingEntry.read();
   switch (missingResult) {
-    case DoosOk(value: final value):
+    case DoosOk(:final value):
       print('✓ Value: $value');
-    case DoosErr(error: final error):
+    case DoosErr(:final error):
       print('✗ Expected error: $error');
   }
 
@@ -114,16 +114,16 @@ Future<void> main() async {
   switch (removeResult) {
     case DoosOk(value: final removed):
       print('✓ Key removed: $removed');
-    case DoosErr(error: final error):
+    case DoosErr(:final error):
       print('✗ Error removing key: $error');
   }
 
   // Verify it's gone
   final verifyResult = await usernameEntry.readOrNull();
   switch (verifyResult) {
-    case DoosOk(value: final value):
+    case DoosOk(:final value):
       print('Value after remove: $value');
-    case DoosErr(error: final error):
+    case DoosErr(:final error):
       print('✗ Error: $error');
   }
 
