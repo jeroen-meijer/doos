@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:doos/src/json_storage_adapter.dart';
+import 'package:doos/doos.dart';
 import 'package:test/test.dart';
 
 void main() {

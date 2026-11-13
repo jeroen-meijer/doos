@@ -1,7 +1,7 @@
 // ignore: lines_longer_than_80_chars
 // ignore_for_file: deprecated_member_use_from_same_package, prefer_const_constructors
 
-import 'package:doos/src/result.dart';
+import 'package:doos/doos.dart';
 import 'package:test/test.dart';
 
 void main() {
